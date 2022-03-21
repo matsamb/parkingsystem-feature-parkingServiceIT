@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DBConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">parking-system</a> &gt; <a href="index.source.html" class="el_package">com.parkit.parkingsystem.constants</a> &gt; <span class="el_source">DBConstants.java</span></div><h1>DBConstants.java</h1><pre class="source lang-java linenums">package com.parkit.parkingsystem.constants;
+
+<span class="nc" id="L3">public class DBConstants {</span>
+
+    public static final String GET_NEXT_PARKING_SPOT = &quot;select min(PARKING_NUMBER) from parking &quot;
+    		+ &quot;where AVAILABLE = true and TYPE = ?&quot;;
+    public static final String GET_AVAILABLE_PARKING_SPOT = &quot;select count(distinct PARKING_NUMBER) &quot;
+    		+ &quot;from parking where AVAILABLE = true&quot;;
+    
+    public static final String ALL_SLOT_AVAILABLE_TRUE = &quot;update parking set available = true&quot;;
+    public static final String TICKET_RESTART = &quot;truncate table ticket&quot;;
+
+    public static final String REG_NUMBER_OCCURRENCES_FULL_TICKET_TABLE = &quot;SELECT *,COUNT(vehicle_reg_number) &quot;
+    		+ &quot;as occurences FROM ticket GROUP BY vehicle_reg_number ORDER BY occurences DESC&quot;;
+    public static final String REG_NUMBER_OCCURRENCES = &quot;SELECT vehicle_reg_number, COUNT(vehicle_reg_number) &quot;
+    		+ &quot;as occurences FROM ticket GROUP BY vehicle_reg_number ORDER BY occurences DESC&quot;;
+    
+    public static final String GET_THE_FIVE_CURRENT_TICKET = &quot;select * from ticket inner join parking &quot;
+    		+ &quot;on ticket.parking_number = parking.parking_number order by in_time desc limit 5&quot;;
+
+    public static final String UPDATE_PARKING_SPOT = &quot;update parking set available = ? where PARKING_NUMBER = ?&quot;;
+    public static final String UPDATE_PARKING_SPOT_TEST_ENTRY = &quot;update parking set available = false where PARKING_NUMBER = 1&quot;;
+
+    
+    public static final String UPDATE_FULL_PARKING_SPOT_TEST = &quot;update parking, ticket set available = false&quot;;
+    public static final String UPDATE_FULL_PARKING_SPOT_WITH_SAME_REG_TEST= &quot; update parking, ticket set parking.available = false and ticket.vehicle_reg_number =?&quot;;
+    public static final String UPDATE_EMPTY_PARKING_SPOT_TEST = &quot;update parking set available = true&quot;;
+    
+    public static final String INSERT_TWO_TICKET_SAME_AA_REGISTRATION_NUMBER_TEST = &quot; insert into ticket &quot;
+    		+ &quot;(PARKING_NUMBER,VEHICLE_REG_NUMBER,PRICE,IN_TIME,OUT_TIME,IN_SLOT) &quot;
+    		+ &quot;values (3,'AA',1.5,'2022-02-13 14:29:32',null,1), &quot;
+    		+ &quot;(2,'AA',1.65,'2022-02-13 14:39:32','2022-02-13 15:49:32',0);&quot;;
+    public static final String COUNT_HOW_MANY_TIMES_REG_NUMBER_PARKED = &quot;SELECT COUNT(ticket.vehicle_reg_number) &quot;
+    		+ &quot;AS count FROM ticket WHERE ticket.vehicle_reg_number =?&quot;
+    		+ &quot; GROUP BY ticket.vehicle_reg_number ORDER BY count DESC&quot;;
+
+    public static final String SAVE_TICKET = &quot;insert into ticket(PARKING_NUMBER, VEHICLE_REG_NUMBER, &quot;
+    		+ &quot;PRICE, IN_TIME, OUT_TIME, IN_SLOT) values(?,?,?,?,?,?)&quot;;
+    public static final String UPDATE_TICKET = &quot;update ticket set PRICE=?, OUT_TIME=?, IN_SLOT = false where ID=?&quot;;
+    public static final String GET_TICKET = &quot;select ticket.PARKING_NUMBER, ticket.ID, ticket.PRICE, ticket.IN_TIME, ticket.OUT_TIME, &quot;
+    		+ &quot;parking.TYPE from ticket, parking where parking.parking_number = ticket.parking_number and &quot;
+    		+ &quot;ticket.VEHICLE_REG_NUMBER=? and ticket.in_slot = true order by ticket.IN_TIME  limit 1 &quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

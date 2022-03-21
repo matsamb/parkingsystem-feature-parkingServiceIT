@@ -1,0 +1,11 @@
+com\parkit\parkingsystem\integration\config\DataBaseTestConfigIT.class
+com\parkit\parkingsystem\ParkingServiceTest.class
+com\parkit\parkingsystem\integration\ParkingDataBaseEntryIT.class
+com\parkit\parkingsystem\ParkingServiceTest$processIncomingVehicleNestTest.class
+com\parkit\parkingsystem\integration\ParkingDataBaseExitIt$ExitingACarNestTest.class
+com\parkit\parkingsystem\integration\service\DataBasePrepareService.class
+com\parkit\parkingsystem\integration\ParkingDataBaseExitIt.class
+com\parkit\parkingsystem\FareCalculatorServiceTest.class
+com\parkit\parkingsystem\ParkingServiceTest$processExitingVehicleNestTest.class
+com\parkit\parkingsystem\ParkingSpotDaoTest.class
+com\parkit\parkingsystem\TicketDaoTest.class
